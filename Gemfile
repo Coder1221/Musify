@@ -27,7 +27,7 @@ gem 'jbuilder', '~> 2.7'
 gem "devise"
 gem "rolify"
 gem "devise_invitable"
-
+gem "bootstrap_form", "~> 4.0"
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 

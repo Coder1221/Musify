@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_26_101041) do
+ActiveRecord::Schema.define(version: 2021_08_26_133340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
+    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
+  end
 
   create_table "super_admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,6 +37,14 @@ ActiveRecord::Schema.define(version: 2021_08_26_101041) do
     t.string "schoolname", limit: 25, null: false
     t.index ["email"], name: "index_super_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_super_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "super_admins_roles", id: false, force: :cascade do |t|
+    t.bigint "super_admin_id"
+    t.bigint "role_id"
+    t.index ["role_id"], name: "index_super_admins_roles_on_role_id"
+    t.index ["super_admin_id", "role_id"], name: "index_super_admins_roles_on_super_admin_id_and_role_id"
+    t.index ["super_admin_id"], name: "index_super_admins_roles_on_super_admin_id"
   end
 
 end
