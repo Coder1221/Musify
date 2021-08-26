@@ -1,3 +1,10 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  #  Setting route page to login page
+  devise_scope :super_admin do
+    root to: "super_admin/sessions#new"
+  end
+
+  devise_for :super_admins, controllers: {
+    sessions: 'super_admin/sessions'
+  }
 end
