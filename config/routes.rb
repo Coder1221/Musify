@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   end
 
   devise_for :super_admins, controllers: {
-    sessions: 'super_admin/sessions'
+    sessions: 'super_admin/sessions',
+    registrations: 'super_admin/registrations'
   }
 end
