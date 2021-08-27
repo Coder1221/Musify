@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 class SuperAdmin::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
@@ -7,12 +6,15 @@ class SuperAdmin::RegistrationsController < Devise::RegistrationsController
   # GET /resource/sign_up
   # def new
   #   super
-  # end
+  # end 
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+    # adding super admin role to user
+    @email = params[:super_admin][:email]
+    SuperAdmin.find_by_email(@email).add_role(:super_admin)
+  end
 
   # GET /resource/edit
   # def edit
