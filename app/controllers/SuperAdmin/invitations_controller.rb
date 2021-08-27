@@ -1,16 +1,13 @@
 class SuperAdmin::InvitationsController < Devise::InvitationsController
     before_action :configure_permitted_parameters, only: [:update ,:new ,:create]
 
-
     def create
-        @role = params[:super_admin][:invited_by_role]
+        @role = params[:super_admin][:invited_by_role].downcase!
         params[:super_admin].delete :invited_by_role
         params[:super_admin][:schoolname] = current_inviter.schoolname 
         params[:super_admin][:name] = 'Default'
-        # ss
         self.resource = invite_resource
-        
-        self.resource.add_role(@roles)
+        self.resource.add_role(@role)
         resource_invited = resource.errors.empty?
         yield resource if block_given?
 
@@ -30,6 +27,7 @@ class SuperAdmin::InvitationsController < Devise::InvitationsController
             respond_with_navigational(resource) { render :new }
         end
     end
+
     protected
     
     def invite_params
@@ -40,6 +38,7 @@ class SuperAdmin::InvitationsController < Devise::InvitationsController
 
     def configure_permitted_parameters
         devise_parameter_sanitizer.permit(:invite_key_fields, keys: [:email])
-        devise_parameter_sanitizer.permit(:accept_invitation, keys: [:username])
+        # this for permit :name params after submit field 
+        devise_parameter_sanitizer.permit(:accept_invitation, keys: [:name])
     end
 end
