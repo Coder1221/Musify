@@ -1,9 +1,7 @@
 class SuperAdmin < ApplicationRecord
   rolify
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  attr_accessor :invited_by_role #virtual attribute
   devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
-  
   # validations in model
   validates :name , presence: true
   validates :schoolname , presence: true
