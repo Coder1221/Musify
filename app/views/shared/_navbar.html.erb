@@ -1,16 +1,19 @@
-<nav class="navbar navbar-dark bg-primary navbar-expand-lg">
+<%= stylesheet_link_tag "styles" %>
 
+<nav class="navbar navbar-dark bg-primary navbar-expand-lg">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">Musify</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <% if super_admin_signed_in? %>
             <li class="nav-item">
               <%= link_to 'Logout' , destroy_super_admin_session_path , class:'nav-link' ,method: :delete %>
             </li>
+            <form class="form-inline my-2 my-md-0"> </form>
         <% else %>
             <li class="nav-item">
                 <%= link_to 'Register' ,new_super_admin_registration_path, class: 'nav-link' %>
@@ -20,7 +23,47 @@
                 <%= link_to 'Sign in' , new_super_admin_session_path , class: 'nav-link' %>
             </li>
         <% end %>
+        
+        <a href="#menu-toggle" id="menu-toggle" class="navbar-brand">
+          <span class="navbar-toggler-icon"></span>
+        </a>
+        
       </ul>
     </div>
   </div>
 </nav>
+
+
+<div id="wrapper" class="toggled">
+  <div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+      <li>
+        <a href="#"> School Information</a>
+      </li>
+      <li> 
+        <a href="#"> Users </a> 
+      </li>
+      <li> 
+        <%= link_to "Invite", new_super_admin_invitation_path , method: :get %>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+<script>
+    $(function(){
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    $(window).resize(function(e) {
+        if($(window).width()<=768){
+        $("#wrapper").removeClass("toggled");
+        }else{
+        $("#wrapper").addClass("toggled");
+        }
+    });
+    });
+</script>
