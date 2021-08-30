@@ -5,4 +5,9 @@ class SuperAdmin < ApplicationRecord
   # validations in model
   validates :name , presence: true
   validates :schoolname , presence: true
+
+  def user_role
+    roles.first.name
+  end
+
 end

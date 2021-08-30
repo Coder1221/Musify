@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
+
   resources :dash_board
+  resources :users do
+    member do
+      get :delete
+    end
+  end
   #  Setting route page to login page
   devise_scope :super_admin do
     authenticated :super_admin do

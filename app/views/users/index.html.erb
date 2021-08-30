@@ -1,0 +1,71 @@
+<table class="table table-hover table-sm center">
+  <thead>
+    <tr>
+      <th> Id</th>
+      <th> Email</th>
+      <th> Name</th>
+      <th> School name</th>
+      <th> Role </th>   
+      <th> OP </th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <th scope="row"> <%= user.id%> </th>
+      <td> <%= user.email%> </td>
+      <td> <%= user.name%> </td>
+      <td> <%= user.schoolname%> </td>
+      <td> <%= user.user_role %></td>
+      <td>
+          <div class="container">
+            <a href="<%= edit_super_admin_registration_path(user)%>" class="btn btn-primary a-btn-slide-text">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                <span><strong>Edit</strong></span>
+            </a>
+            <% unless current_super_admin.id == user.id %>
+                <span><strong><%=link_to "Delete",  user_path(user), method: :delete %></strong></span>   
+            <%end%>
+          </div>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
+<style>
+    a.btn:hover {
+        -webkit-transform: scale(1.1);
+        -moz-transform: scale(1.1);
+        -o-transform: scale(1.1);
+    }
+    a.btn {
+        -webkit-transform: scale(0.8);
+        -moz-transform: scale(0.8);
+        -o-transform: scale(0.8);
+        -webkit-transition-duration: 0.5s;
+        -moz-transition-duration: 0.5s;
+        -o-transition-duration: 0.5s;
+    }
+    .center{
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    table{
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    table, th, td {
+    border: 1px solid black;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 5px;
+    }
+    th {
+        text-align: left;
+    }
+</style>
