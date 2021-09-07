@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_30_101954) do
+ActiveRecord::Schema.define(version: 2021_09_07_114004) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,12 @@ ActiveRecord::Schema.define(version: 2021_08_30_101954) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_schools_on_name"
+  end
+
+  create_table "super_admin_schools", id: false, force: :cascade do |t|
+    t.integer "super_admin_id"
+    t.integer "school_id"
+    t.index ["super_admin_id"], name: "index_super_admin_schools_on_super_admin_id"
   end
 
   create_table "super_admins", force: :cascade do |t|
