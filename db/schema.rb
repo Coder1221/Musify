@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_27_085325) do
+ActiveRecord::Schema.define(version: 2021_08_30_101954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,20 @@ ActiveRecord::Schema.define(version: 2021_08_27_085325) do
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
   end
 
+  create_table "schools", force: :cascade do |t|
+    t.integer "super_admin_id"
+    t.string "name"
+    t.string "email"
+    t.string "adress"
+    t.string "city"
+    t.string "phone"
+    t.integer "zip_code"
+    t.integer "logo"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_schools_on_name"
+  end
+
   create_table "super_admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -34,7 +48,6 @@ ActiveRecord::Schema.define(version: 2021_08_27_085325) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name", limit: 25, null: false
-    t.string "schoolname", limit: 25, null: false
     t.string "invitation_token"
     t.datetime "invitation_created_at"
     t.datetime "invitation_sent_at"

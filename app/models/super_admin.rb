@@ -1,10 +1,8 @@
 class SuperAdmin < ApplicationRecord
   rolify
-  attr_accessor :invited_by_role #virtual attribute
+  attr_accessor :invited_by_role , :schoolname #virtual attribute
+  has_one :school
   devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
-  # validations in model
-  validates :name , presence: true
-  validates :schoolname , presence: true
 
   def user_role
     roles.first.name

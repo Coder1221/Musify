@@ -1,13 +1,13 @@
 class SuperAdmin::InvitationsController < Devise::InvitationsController
     before_action :configure_permitted_parameters, only: [:update ,:new ,:create]
-
     def create
         @role = params[:super_admin][:invited_by_role].downcase!
         params[:super_admin].delete :invited_by_role
-        params[:super_admin][:schoolname] = current_inviter.schoolname 
         params[:super_admin][:name] = 'Default'
+
         self.resource = invite_resource
         self.resource.add_role(@role)
+        self.resource.school  = current_inviter.school
         resource_invited = resource.errors.empty?
         yield resource if block_given?
 

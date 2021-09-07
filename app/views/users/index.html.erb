@@ -10,16 +10,16 @@
     </tr>
   </thead>
   <tbody>
-  <% @users.each do |user| %>
+  <% @users.each do |user| %> 
     <tr>
       <th scope="row"> <%= user.id%> </th>
       <td> <%= user.email%> </td>
       <td> <%= user.name%> </td>
-      <td> <%= user.schoolname%> </td>
+      <td> <%= user.school.name %> </td>
       <td> <%= user.user_role %></td>
       <td>
           <div class="container">
-            <a href="<%= edit_super_admin_registration_path(user)%>" class="btn btn-primary a-btn-slide-text">
+            <a href="<%= edit_super_admin_registration_path(user.id)%>" class="btn btn-primary a-btn-slide-text">
                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                 <span><strong>Edit</strong></span>
             </a>
