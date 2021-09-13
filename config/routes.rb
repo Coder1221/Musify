@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :dash_board
-  resources :users do
+  resources :users , :school do
     member do
       get :delete
     end
@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   devise_scope :super_admin do
     authenticated :super_admin do
       root to: 'dash_board#index', as: :authenticated_root
+      # root to: edit_school_path(1), as:  :authenticated_root
     end
     root to: "super_admin/sessions#new"
   end

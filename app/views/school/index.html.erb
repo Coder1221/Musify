@@ -1,0 +1,5 @@
+<h1>All schools</h1>
+<% @schools.each do |school| %>
+    <%= school.name %>
+    <%= link_to  'edit',edit_school_path(school.id) %>   
+<% end %>

@@ -1,0 +1,21 @@
+<h1>Enter School Information</h1>
+<%= form_for(@school) do |f| %>
+    <h1>Name: <%= f.text_field(:name)%></h1>
+    <br>
+    <h2>Adress:<%= f.text_field(:adress)%></h2>
+    <br>
+
+    <h3>City:<%= f.text_field(:city)%></h3>
+    <br>
+
+    <h4>Phone:<%= f.telephone_field(:phone)%></h4>
+    <br>
+
+    <h5>Zip Code :<%= f.text_field(:zip_code)%></h5>
+    <br>
+
+    <h6>Email:<%= f.email_field(:email)%></h6>
+    <br>
+
+    <%= f.submit("Update")%>
+<%end%>
