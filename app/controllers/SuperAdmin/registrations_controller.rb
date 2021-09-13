@@ -6,22 +6,21 @@ class SuperAdmin::RegistrationsController < Devise::RegistrationsController
   # GET /resource/sign_up
   # def new
   #   super
-  # end 
+  # end
 
   # POST /resource
   def create
-    build_resource(sign_up_params)
-    
-    @schl = School.create(:name=> params[:super_admin][:schoolname])
-    @schl.save
-    resource.school  = @schl
+    build_resource(sign_up_params)   
+    @schl = School.create(:name => params[:super_admin][:schoolname])
+    # @schl.save
+    # resource.school  = @schl
+ 
     resource.save
-
+    @schl.SuperAdmin << resource
     # adding super admin role to user
     @email = params[:super_admin][:email]
-    login_user = SuperAdmin.find_by_email(@email) 
+    login_user = SuperAdmin.find_by_email(@email)
     login_user.add_role(:super_admin)
-    
 
     yield resource if block_given?
     if resource.persisted?
@@ -39,7 +38,6 @@ class SuperAdmin::RegistrationsController < Devise::RegistrationsController
       set_minimum_password_length
       respond_with resource
     end
-    
   end
 
   # GET /resource/edit
@@ -70,7 +68,7 @@ class SuperAdmin::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name , :schoolname])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :schoolname])
   end
 
   # If you have extra params to permit, append them to the sanitizer.

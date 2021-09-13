@@ -1,7 +1,6 @@
 class CreateSchools < ActiveRecord::Migration[6.1]
   def change
     create_table :schools do |t|
-      t.integer :super_admin_id
       t.string :name
       t.string :email
       t.string :adress

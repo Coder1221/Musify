@@ -15,7 +15,7 @@
       <th scope="row"> <%= user.id%> </th>
       <td> <%= user.email%> </td>
       <td> <%= user.name%> </td>
-      <td> <%= user.school.name %> </td>
+      <td> <%= School.find_by_id(user.school_id).name %> </td>
       <td> <%= user.user_role %></td>
       <td>
           <div class="container">

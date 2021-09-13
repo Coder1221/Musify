@@ -1,4 +1,4 @@
 class School < ApplicationRecord
-    belongs_to :super_admin
-    validates :name , presence: true
+  validates :name, presence: true
+  has_many :SuperAdmin
 end
