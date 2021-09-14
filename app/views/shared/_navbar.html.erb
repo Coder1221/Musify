@@ -38,7 +38,8 @@
   <div id="sidebar-wrapper">
     <ul class="sidebar-nav">
       <li>
-        <a href="#"> School Information</a>
+        <% @id = School.find_by_id(current_super_admin.school_id)%>
+        <%= link_to "School Information" , edit_school_path(@id)%>
       </li>
       <li> 
         <%= link_to "Users", users_path , method: :get %>

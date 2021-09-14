@@ -1,21 +1,73 @@
 <h1>Enter School Information</h1>
+<%= stylesheet_link_tag "school_form" %>
+<div class = "container-sm  bg-primary p-3 text-white  border">
+
 <%= form_for(@school) do |f| %>
-    <h1>Name: <%= f.text_field(:name)%></h1>
-    <br>
-    <h2>Adress:<%= f.text_field(:adress)%></h2>
-    <br>
+<div class = 'form'>
+    <div class = 'spl_row' >
+        <div class = 'lable'>
+            <p>Name:</p>
+        </div>
+        
+        <div class = 'spl_input'>
+            <%= f.text_field(:name) %>
+        </div>
+    </div>
+    
+    <div class = 'spl_row' >
+        <div class = 'lable'>
+            <p>Adress:</p>
+        </div>
+        
+        <div class = 'spl_input'>
+            <%= f.text_field(:adress) %>
+        </div>
+    </div>
+    
+    <div class = 'spl_row' >
+        <div class = 'lable'>
+            <p>City:</p>
+        </div>
+        
+        <div class = 'spl_input'>
+            <%= f.text_field(:city) %>
+        </div>
+    </div>
+    
+    <div class = 'spl_row' >
+        <div class = 'lable'>
+            <p>Phone:</p>
+        </div>
+        
+        <div class = 'spl_input'>
+            <%= f.telephone_field(:phone) %>
+        </div>
+    </div>
 
-    <h3>City:<%= f.text_field(:city)%></h3>
-    <br>
+    <div class = 'spl_row' >
+        <div class = 'lable'>
+            <p>Email:</p>
+        </div>
+        
+        <div class = 'spl_input'>
+            <%= f.email_field(:email) %>
+        </div>
+    </div>
 
-    <h4>Phone:<%= f.telephone_field(:phone)%></h4>
-    <br>
+    <div class = 'spl_row' >
+        <div class = 'lable'>
+            <p>Zip Code:</p>
+        </div>
+        
+        <div class = 'spl_input'>
+            <%= f.text_field(:zip_code) %>
+        </div>
+    </div>
+</div>
 
-    <h5>Zip Code :<%= f.text_field(:zip_code)%></h5>
-    <br>
-
-    <h6>Email:<%= f.email_field(:email)%></h6>
-    <br>
-
+<div class = 'submit_button'>
     <%= f.submit("Update")%>
+</div>
+
 <%end%>
+</div>

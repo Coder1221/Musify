@@ -29,6 +29,6 @@ class SchoolController < ApplicationController
     protected
     
     def update_params
-        params.require(:school).permit(:name , :email , :adresss ,:city  , :phone , :zip_code ,:logo)
+        params.require(:school).permit(:name , :email , :adress ,:city  , :phone , :zip_code ,:logo)
     end
 end

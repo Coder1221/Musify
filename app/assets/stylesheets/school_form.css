@@ -1,0 +1,13 @@
+.form .spl_row{
+    flex: 1;
+    flex-direction: 'row';
+}
+p{
+    color: rgb(25, 27, 27);
+}   
+.submit_button{
+    margin-top: 10px;
+}
+.continer{
+    max-width: 100px;
+}
