@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class SuperAdmin::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
-  
+
   # GET /resource/sign_in
   def new
     self.resource = resource_class.new(sign_in_params)
@@ -16,10 +16,10 @@ class SuperAdmin::SessionsController < Devise::SessionsController
     sign_in(resource_name, resource)
     
     if self.resource.status_suspended?
-      flash[:notice] = "Suspened Account"
       sign_out(resource_name)
+      flash[:notice] = "Suspened Account"
       sign_out_and_redirect(current_super_admin)
-      else
+    else
       set_flash_message!(:notice, :signed_in)
       yield resource if block_given?
       respond_with resource, location: after_sign_in_path_for(resource)

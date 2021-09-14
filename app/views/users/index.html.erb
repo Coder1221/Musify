@@ -25,15 +25,18 @@
 
             <% unless current_super_admin.id == user.id %>
                 <span><strong> <%= link_to "Delete",  user_path(user), method: :delete %> </strong></span>
-            <%end%>
-            
-            <% if current_super_admin.id  %>            
+            <% end %>
+            <% if current_super_admin.id %>
               <a href="<%= edit_super_admin_registration_path(user.id) %>" class = "btn btn-primary a-btn-slide-text">
                   <span class="glyphicon glyphicon-edit" aria-hidden="true"> </span>
                   <span><strong>Edit</strong></span>
               </a>
-            <%end%>
-
+            <% end %>
+            <% if user.status_live? %>
+              <%= link_to "Revoke",activate_or_deactivate_users_path( :id=> user.id) %>
+            <%else%>
+              <%= link_to "Activate",activate_or_deactivate_users_path(:id=> user.id) %>
+            <% end %>
           </div>
       </td>
     </tr>
