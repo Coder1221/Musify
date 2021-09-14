@@ -5,7 +5,13 @@ class SuperAdmin < ApplicationRecord
   devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
   has_one :school
 
+  enum status: {
+    suspended: 0,
+    live: 1,
+  }, _prefix: true
+
   def user_role
     roles.first.name
   end
+
 end
