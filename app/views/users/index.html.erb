@@ -1,3 +1,5 @@
+<div class="container-sm">
+
 <table class="table table-hover table-sm center">
   <thead>
     <tr>
@@ -9,6 +11,7 @@
       <th> OP </th>
     </tr>
   </thead>
+
   <tbody>
   <% @users.each do |user| %> 
     <tr>
@@ -16,16 +19,21 @@
       <td> <%= user.email%> </td>
       <td> <%= user.name%> </td>
       <td> <%= School.find_by_id(user.school_id).name %> </td>
-      <td> <%= user.user_role %></td>
+      <td> <%= user.user_role %> </td>
       <td>
           <div class="container">
-            <a href="<%= edit_super_admin_registration_path(user.id)%>" class="btn btn-primary a-btn-slide-text">
-                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                <span><strong>Edit</strong></span>
-            </a>
+
             <% unless current_super_admin.id == user.id %>
-                <span><strong><%=link_to "Delete",  user_path(user), method: :delete %></strong></span>   
+                <span><strong> <%= link_to "Delete",  user_path(user), method: :delete %> </strong></span>
             <%end%>
+            
+            <% if current_super_admin.id  %>            
+              <a href="<%= edit_super_admin_registration_path(user.id) %>" class = "btn btn-primary a-btn-slide-text">
+                  <span class="glyphicon glyphicon-edit" aria-hidden="true"> </span>
+                  <span><strong>Edit</strong></span>
+              </a>
+            <%end%>
+
           </div>
       </td>
     </tr>
@@ -33,6 +41,7 @@
   </tbody>
 </table>
 
+</div>
 
 <style>
     a.btn:hover {

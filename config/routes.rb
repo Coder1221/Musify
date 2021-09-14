@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   #  Setting route page to login page
   devise_scope :super_admin do
     authenticated :super_admin do
-      # root to: 'dash_board#index', as: :authenticated_root
       root to: 'school#index', as:  :authenticated_root
     end
     root to: "super_admin/sessions#new"

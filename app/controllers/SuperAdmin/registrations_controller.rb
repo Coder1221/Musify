@@ -12,9 +12,6 @@ class SuperAdmin::RegistrationsController < Devise::RegistrationsController
   def create
     build_resource(sign_up_params)   
     @schl = School.create(:name => params[:super_admin][:schoolname])
-    # @schl.save
-    # resource.school  = @schl
- 
     resource.save
     @schl.SuperAdmin << resource
     # adding super admin role to user
@@ -38,17 +35,31 @@ class SuperAdmin::RegistrationsController < Devise::RegistrationsController
       set_minimum_password_length
       respond_with resource
     end
+    
   end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    if current_super_admin.id == params[:format].to_i
+      super
+    else
+      @user = SuperAdmin.find_by_id(params[:format])
+      render('overlaoded_edit')
+    end
+  end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    if current_super_admin.id == params[:format].to_i
+      super
+    else
+      @user = SuperAdmin.find_by_id(params[:super_admin][:id])
+      if @user.update(update_params)
+        @user.save
+        redirect_to users_path
+      end
+    end
+  end
 
   # DELETE /resource
   # def destroy
@@ -70,7 +81,10 @@ class SuperAdmin::RegistrationsController < Devise::RegistrationsController
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :schoolname])
   end
-
+  
+  def update_params
+    params.require(:super_admin).permit(:name ,:email ,:id)
+  end
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params
   #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])

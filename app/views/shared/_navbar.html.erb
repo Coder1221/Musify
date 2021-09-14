@@ -33,12 +33,13 @@
   </div>
 </nav>
 
+<% if current_super_admin %>
 
 <div id="wrapper" class="toggled">
   <div id="sidebar-wrapper">
     <ul class="sidebar-nav">
       <li>
-        <% @id = School.find_by_id(current_super_admin.school_id)%>
+        <% @id = School.find_by_id(current_super_admin.school_id) %>
         <%= link_to "School Information" , edit_school_path(@id)%>
       </li>
       <li> 
@@ -50,7 +51,7 @@
     </ul>
   </div>
 </div>
-
+<%end%>
 
 <script>
     $(function(){
