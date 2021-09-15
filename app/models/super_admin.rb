@@ -11,7 +11,7 @@ class SuperAdmin < ApplicationRecord
   }, _prefix: true
 
   def user_role
-    roles.first.name
+    roles.first.name.to_sym
   end
 
 end

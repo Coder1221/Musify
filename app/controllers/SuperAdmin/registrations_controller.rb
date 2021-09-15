@@ -15,7 +15,7 @@ class SuperAdmin::RegistrationsController < Devise::RegistrationsController
     resource.save
     @schl.SuperAdmin << resource
     # adding super admin role to user
-    @email = params[:super_admin][:email]
+    @email = params[:super_admin][:email] 
     login_user = SuperAdmin.find_by_email(@email)
     login_user.add_role(:super_admin)
 

@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
   before_action :authenticate_super_admin!
-  
+  load_and_authorize_resource :SuperAdmin ,:parent => false
+
   def index
-    @users = SuperAdmin.all()
+
   end
   
   def activate_or_deactivate

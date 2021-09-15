@@ -15,6 +15,7 @@ class SchoolController < ApplicationController
 
   def edit
     @school = School.find(params[:id])
+    puts request.inspect
   end
 
   def update
