@@ -5,6 +5,7 @@ class Ability
     @all_roles = [:admin, :teacher, :student]
     if user.user_role == :super_admin
       can :manage, SuperAdmin
+      can :manage, School, :id => user.school_id.to_i
     end
 
     if @all_roles.include?(user.user_role) && user.user_role != :student
@@ -23,13 +24,15 @@ class Ability
       can :destroy, SuperAdmin, :id => @users_id
       # user cannnot delete himself
       cannot :destroy, SuperAdmin, :id => user.id
-      can :activate_or_deactivate ,SuperAdmin , :id => @users_id
-      cannot :activate_or_deactivate ,SuperAdmin , :id => user.id
+      can :activate_or_deactivate, SuperAdmin, :id => @users_id
+      cannot :activate_or_deactivate, SuperAdmin, :id => user.id
+      can :manage, School, :id => user.school_id.to_i
     end
 
     if user.user_role == :student
       can :read, SuperAdmin, :id => user.id
       can :update, SuperAdmin, :id => user.id
+      can :read, School, :id => user.school_id.to_i
     end
   end
 end

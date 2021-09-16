@@ -1,5 +1,6 @@
 class SchoolController < ApplicationController
   before_action :authenticate_super_admin!
+  load_and_authorize_resource
 
   def index
     @schools = School.all()
