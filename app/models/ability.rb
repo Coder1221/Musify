@@ -23,6 +23,8 @@ class Ability
       can :destroy, SuperAdmin, :id => @users_id
       # user cannnot delete himself
       cannot :destroy, SuperAdmin, :id => user.id
+      can :activate_or_deactivate ,SuperAdmin , :id => @users_id
+      cannot :activate_or_deactivate ,SuperAdmin , :id => user.id
     end
 
     if user.user_role == :student
