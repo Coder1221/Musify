@@ -2,19 +2,32 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    @all_roles = [:super_admin, :admin, :teacher, :student]
+    @all_roles = [:admin, :teacher, :student]
+    if user.user_role == :super_admin
+      can :manage, SuperAdmin
+    end
 
-    if @all_roles.include?(user.user_role)
+    if @all_roles.include?(user.user_role) && user.user_role != :student
       @ind = @all_roles.find_index(user.user_role)
       @edit_able_roles = @all_roles.slice(@ind, @all_roles.length)
       @users_id = []
+
       SuperAdmin.all().each do |user_|
         if @edit_able_roles.include?(user_.user_role)
           @users_id << user_.id
         end
       end
+
       can :read, SuperAdmin, :id => @users_id
       can :update, SuperAdmin, :id => @users_id
+      can :destroy, SuperAdmin, :id => @users_id
+      # user cannnot delete himself
+      cannot :destroy, SuperAdmin, :id => user.id
+    end
+
+    if user.user_role == :student
+      can :read, SuperAdmin, :id => user.id
+      can :update, SuperAdmin, :id => user.id
     end
   end
 end

@@ -8,6 +8,11 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNav">
+
+    <% if current_super_admin %>
+      <p> <%= current_super_admin.user_role.capitalize() %></p>
+    <% end %>
+
       <ul class="navbar-nav ms-auto">
         <% if super_admin_signed_in? %>
             <li class="nav-item">
@@ -69,3 +74,13 @@
     });
     });
 </script>
+
+<style>
+p {
+ text-align: center;
+ margin-left: auto;
+ margin-bottom: 0rem;
+ color: white;
+ font-weight: bold;
+}
+</style>
