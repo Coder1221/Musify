@@ -10,7 +10,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
 
     <% if current_super_admin %>
-      <p> <%= current_super_admin.user_role.capitalize() %></p>
+      <a class= "oof"> <%= current_super_admin.user_role.capitalize() %></p>
     <% end %>
 
       <ul class="navbar-nav ms-auto">
@@ -76,8 +76,8 @@
 </script>
 
 <style>
-p {
- text-align: center;
+.oof{
+  text-align: center;
  margin-left: auto;
  margin-bottom: 0rem;
  color: white;
