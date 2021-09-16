@@ -3,15 +3,13 @@ class SchoolController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @schools = School.all()
-  end
-
-  def new
-    @school = School.new
+    @users = @schools.first.SuperAdmin
+    @count_hash = @users.each_with_object(Hash.new(0)) do |user ,hash|
+      hash[user.user_role] += 1
+    end
   end
 
   def show
-    @school = School.find(params[:id])
   end
 
   def edit

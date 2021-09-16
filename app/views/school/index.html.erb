@@ -1,6 +1,39 @@
-<h1> All schools </h1>
-<% @schools.each do |school| %>
-    <%= school.name %>
-    <%= link_to  'edit',edit_school_path(school.id) %>   
-    <br>
-<% end %>
+<div class="row mt-2">
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Number of Super Admins</h5>
+        <p> <%= @count_hash[:admin] %> </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Number of Admins</h5>
+        <p> <%= @count_hash[:admin] %> </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class = "row mt-3">
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Number of Teachers</h5>
+        <p> <%= @count_hash[:teacher] %> </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Number of Students</h5>
+        <p> <%= @count_hash[:student] %> </p>
+      </div>
+    </div>
+  </div>
+</div>
