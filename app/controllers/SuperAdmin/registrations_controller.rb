@@ -11,18 +11,25 @@ class SuperAdmin::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     build_resource(sign_up_params)
-    @schl = School.create(:name => params[:super_admin][:schoolname])
-    resource.save
-    @schl.SuperAdmin << resource
-    # adding super admin role to user
-    @email = params[:super_admin][:email]
-    login_user = SuperAdmin.find_by_email(@email)
-    login_user.add_role(:super_admin)
-    # against the convention
-    session[:current_user_id]  = self.resource.id
+    @name = params[:super_admin][:schoolname]
     
-    yield resource if block_given?
+    if @name!= ""
+      @schl = School.create(:name => @name)
+      resource.school = @schl
+    end
+    resource.save
+   
+    # if the resource is persisting
     if resource.persisted?
+      @email = params[:super_admin][:email]
+      login_user = SuperAdmin.find_by_email(@email)
+      login_user.add_role(:super_admin)
+    end
+
+    session[:current_user_id] = self.resource.id
+    yield resource if block_given?
+    
+    if resource.persisted? && (params[:super_admin][:schoolname]!="")
       if resource.active_for_authentication?
         set_flash_message! :notice, :signed_up
         sign_up(resource_name, resource)

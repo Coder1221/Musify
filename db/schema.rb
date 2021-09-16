@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2021_09_14_095933) do
   end
 
   create_table "schools", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.string "email"
     t.string "adress"
     t.string "city"
