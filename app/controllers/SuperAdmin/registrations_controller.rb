@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class SuperAdmin::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
-  # before_action :configure_account_update_params, only: [:update]
+  load_and_authorize_resource :SuperAdmin, :parent => false, only: [:edit, :update]
 
   # GET /resource/sign_up
   # def new
@@ -10,12 +10,12 @@ class SuperAdmin::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    build_resource(sign_up_params)   
+    build_resource(sign_up_params)
     @schl = School.create(:name => params[:super_admin][:schoolname])
     resource.save
     @schl.SuperAdmin << resource
     # adding super admin role to user
-    @email = params[:super_admin][:email] 
+    @email = params[:super_admin][:email]
     login_user = SuperAdmin.find_by_email(@email)
     login_user.add_role(:super_admin)
 
@@ -35,22 +35,21 @@ class SuperAdmin::RegistrationsController < Devise::RegistrationsController
       set_minimum_password_length
       respond_with resource
     end
-    
   end
 
   # GET /resource/edit
   def edit
-    if current_super_admin.id == params[:format].to_i
+    if current_super_admin.id == params[:id].to_i
       super
     else
-      @user = SuperAdmin.find_by_id(params[:format])
-      render('overlaoded_edit')
+      @user = SuperAdmin.find_by_id(params[:id])
+      render("overlaoded_edit")
     end
   end
 
   # PUT /resource
   def update
-    if current_super_admin.id == params[:format].to_i
+    if current_super_admin.id == params[:id].to_i
       super
     else
       @user = SuperAdmin.find_by_id(params[:super_admin][:id])
@@ -81,10 +80,11 @@ class SuperAdmin::RegistrationsController < Devise::RegistrationsController
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :schoolname])
   end
-  
+
   def update_params
-    params.require(:super_admin).permit(:name ,:email ,:id)
+    params.require(:super_admin).permit(:name, :email, :id)
   end
+
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params
   #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])

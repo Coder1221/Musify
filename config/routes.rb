@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   resources :dash_board
+  
+  # make it plural 
   resources :school do
     member do
       get :delete
@@ -22,12 +24,15 @@ Rails.application.routes.draw do
       root to: 'school#index', as:  :authenticated_root
     end
     root to: "super_admin/sessions#new"
+    # to change the path to remove format routes
+    get '/super_admins/:id/edit', to: 'super_admin/registrations#edit',  as: 'my_route'
   end
-  
+
+  # scope out controllers
   devise_for :super_admins, controllers: {
     sessions: 'super_admin/sessions',
     registrations: 'super_admin/registrations',
-    invitations: 'super_admin/invitations'
+    invitations: 'super_admin/invitations',
   }
-  
+
 end
