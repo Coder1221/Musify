@@ -27,21 +27,18 @@ class SuperAdmin::InvitationsController < Devise::InvitationsController
     else
       respond_with_navigational(resource) { render :new }
     end
-
   end
-
 
   def edit
     super
   end
 
   def update
-    
     raw_invitation_token = update_resource_params[:invitation_token]
     self.resource = accept_resource
     invitation_accepted = resource.errors.empty?
     # for current user in application
-    session[:current_user_id]  = self.resource.id # my line
+    session[:current_user_id] = self.resource.id # my line
     yield resource if block_given?
 
     if invitation_accepted
@@ -59,7 +56,6 @@ class SuperAdmin::InvitationsController < Devise::InvitationsController
       resource.invitation_token = raw_invitation_token
       respond_with_navigational(resource) { render :edit }
     end
-
   end
 
   protected

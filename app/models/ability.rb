@@ -33,6 +33,7 @@ class Ability
       can :read, SuperAdmin, :id => user.id
       can :update, SuperAdmin, :id => user.id
       can :read, School, :id => user.school_id.to_i
+      can :edit, School, :id => user.school_id.to_i
     end
   end
 end
