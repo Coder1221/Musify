@@ -19,10 +19,12 @@
 
   <body>
       <%= render 'shared/navbar'%>
-      <%if notice!= nil or alert!= nil %>
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
-      <% end %>
+      <div class = "content">
+        <%if notice!= nil or alert!= nil %>
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+        <% end %>
       <%= yield %>
+      </div>
   </body>
 </html>
