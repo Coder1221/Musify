@@ -4,13 +4,26 @@
 
 <%= form_for(@school) do |f| %>
 <div class = 'form'>
+    <% if @school.avatar.present? %>
+        <%= image_tag(@school.avatar , height: 100 , width: 100) %>
+    <% end %>
     <div class = 'spl_row' >
-        <div class = 'lable'>
+        <div class = 'lable'>   
             <p>Name:</p>
         </div>
         
         <div class = 'spl_input'>
             <%= f.text_field(:name) %>
+        </div>
+    </div>
+    
+    <div class = 'spl_row' >
+        <div class = 'lable'>
+            <p>logo :</p>
+        </div>
+        
+        <div class = 'spl_input'>
+            <%= f.file_field(:avatar) %>
         </div>
     </div>
     
