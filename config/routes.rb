@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     sessions: 'super_admin/sessions',
     registrations: 'super_admin/registrations',
     invitations: 'super_admin/invitations',
+    omniauth_callbacks: 'super_admin/omniauth_callbacks'  
   }
 
 end
