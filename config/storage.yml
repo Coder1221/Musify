@@ -11,8 +11,8 @@ amazon:
   service: S3
   access_key_id: <%= ENV['AWS_ACCESS_KEY'] %>
   secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
-  region: ap-south-1
-  bucket: musify-school-app
+  region: 'ap-south-1'
+  bucket: 'musify-school-app'
 
 # Remember not to checkin your GCS keyfile to a repository
 # google:
