@@ -25,6 +25,10 @@
           <p class="alert"><%= alert %></p>
         <% end %>
       <%= yield %>
+
+      <%= link_to "Sign in with Google", super_admin_google_oauth2_omniauth_authorize_path, method: :post %>
+      <br/>
+      <%= link_to "Sign in with Facebook", super_admin_fb_auth_omniauth_authorize_path, method: :post %>
       </div>
   </body>
 </html>

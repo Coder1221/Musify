@@ -99,8 +99,6 @@ Devise.setup do |config|
   # passing skip: :sessions to `devise_for` in your config/routes.rb
   config.skip_session_storage = [:http_auth]
 
-  # config.session_store :cookie_store , key: '_app_session', domain: 'musifyschool.herokuapp.com'
-
   # By default, Devise cleans up the CSRF token on authentication to
   # avoid CSRF token fixation attacks. This means that, when using AJAX
   # requests for sign in and sign up, you need to get a new CSRF token
@@ -324,8 +322,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :google_oauth2 ,ENV['G_CLIENT_ID'] ,ENV['G_CLIENT_SEC'], {}
-  
-  config.omniauth :facebook , ENV['FB_APP_ID'] ,ENV['FP_APP_SECRET']
+  config.omniauth :facebook , ENV['FB_APP_ID'] ,ENV['FP_APP_SECRET'], token_params: { parse: :json }
 
 
   # ==> Warden configuration
