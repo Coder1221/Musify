@@ -7,6 +7,10 @@ class SuperAdmin::OmniauthCallbacksController < Devise::OmniauthCallbacksControl
   def google_oauth2
     handle_auth "Google"
   end
+  
+  def fb_auth
+    handle_auth "Facebook"
+  end
 
 
   def handle_auth(kind)

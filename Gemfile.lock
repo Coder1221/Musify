@@ -47,6 +47,12 @@ GEM
     activerecord (6.1.4.1)
       activemodel (= 6.1.4.1)
       activesupport (= 6.1.4.1)
+    activerecord-session_store (2.0.0)
+      actionpack (>= 5.2.4.1)
+      activerecord (>= 5.2.4.1)
+      multi_json (~> 1.11, >= 1.11.2)
+      rack (>= 2.0.8, < 3)
+      railties (>= 5.2.4.1)
     activestorage (6.1.4.1)
       actionpack (= 6.1.4.1)
       activejob (= 6.1.4.1)
@@ -167,6 +173,8 @@ GEM
       hashie (>= 3.4.6)
       rack (>= 1.6.2, < 3)
       rack-protection
+    omniauth-facebook (8.0.0)
+      omniauth-oauth2 (~> 1.2)
     omniauth-google-oauth2 (1.0.0)
       jwt (>= 2.0)
       oauth2 (~> 1.1)
@@ -288,6 +296,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  activerecord-session_store
   aws-sdk-s3
   bootsnap (>= 1.4.4)
   bootstrap_form (~> 4.0)
@@ -299,6 +308,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   listen (~> 3.3)
   omniauth
+  omniauth-facebook
   omniauth-google-oauth2
   omniauth-rails_csrf_protection
   pg (~> 1.1)
