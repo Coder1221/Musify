@@ -19,11 +19,6 @@ class SuperAdmin::OmniauthCallbacksController < Devise::OmniauthCallbacksControl
       redirect_to new_user_registration_url, alert: @super_admin.errors.full_messages.join("\n")
     end
   end
-  # You should also create an action method in this controller like this:
-  # def twitter
-  # end
-
-  # More info at:
   # https://github.com/heartcombo/devise#omniauth
 
   # GET|POST /resource/auth/twitter
