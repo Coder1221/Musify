@@ -36,8 +36,6 @@ class SuperAdmin < ApplicationRecord
       end
 
     end
-    # setting up session id for current_user_id
-    session[:current_user_id] = @super_admin.id
     @super_admin
   end
 
