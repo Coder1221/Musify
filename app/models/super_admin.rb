@@ -16,11 +16,10 @@ class SuperAdmin < ApplicationRecord
 
   def self.from_omniauth(access_tocken)
     puts access_tocken ,'<------------------------------------------------------------------------------------------------------------------------>' 
-    # s
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
+    where(provider: access_tocken.provider, uid: access_tocken.uid).first_or_create do |user|
+      user.email = access_tocken.info.email
       user.password = Devise.friendly_token[0, 20]
-      user.name = auth.info.name   # assuming the user model has a name
+      user.name = access_tocken.info.name   # assuming the user model has a name
     end
   end
 
