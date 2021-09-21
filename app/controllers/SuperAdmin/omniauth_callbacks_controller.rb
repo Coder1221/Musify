@@ -7,6 +7,10 @@ class SuperAdmin::OmniauthCallbacksController < Devise::OmniauthCallbacksControl
     handle_auth "Facebook"
   end
 
+  def fb_auth
+    handle_auth "Facebook"
+  end
+
   def handle_auth(kind)
     @super_admin = SuperAdmin.from_omniauth(request.env["omniauth.auth"])
     if @super_admin.persisted?
@@ -18,4 +22,5 @@ class SuperAdmin::OmniauthCallbacksController < Devise::OmniauthCallbacksControl
       redirect_to new_super_admin_registration_url, alert: @super_admin.errors.full_messages.join("\n")
     end
   end
+  
 end
