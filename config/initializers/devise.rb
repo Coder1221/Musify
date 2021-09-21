@@ -13,6 +13,6 @@ Devise.setup do |config|
   config.scoped_views = true
   config.sign_out_via = :delete
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  config.omniauth :google_oauth2 ,ENV['G_CLIENT_ID'] ,ENV['G_CLIENT_SEC'], provider_ignores_state: true , {}
+  config.omniauth :google_oauth2 ,ENV['G_CLIENT_ID'] ,ENV['G_CLIENT_SEC'], provider_ignores_state: Rails.env.development?, {}
   config.omniauth :facebook , ENV['FB_APP_ID'] ,ENV['FP_APP_SECRET'],  scope: 'email', info_fields: 'email,name' , token_params: { parse: :json } 
 end
