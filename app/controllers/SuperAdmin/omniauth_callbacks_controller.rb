@@ -3,7 +3,7 @@ class SuperAdmin::OmniauthCallbacksController < Devise::OmniauthCallbacksControl
     handle_auth "Google"
   end
 
-  def fb_auth
+  def facebook
     handle_auth "Facebook"
   end
 
