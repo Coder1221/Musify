@@ -15,24 +15,38 @@ class SuperAdmin < ApplicationRecord
   end
 
   def self.from_omniauth(access_tocken)
+
     puts access_tocken ,'<------------------------------------------------------------------------------------------------------------------------>' 
-    where(provider: access_tocken.provider, uid: access_tocken.uid).first_or_create do |user|
-      user.email = access_tocken.info.email
-      user.password = Devise.friendly_token[0, 20]
+    
+    # where(provider: access_tocken.provider, uid: access_tocken.uid).first_or_create do |user|
+    #   user.email = access_tocken.info.email
+    #   user.password = Devise.friendly_token[0, 20]
+    #   @schl = School.create(:name => 'Provider_created')
+    #   user.school = @schl
+    #   user.name = access_tocken.info.name   # assuming the user model has a name
+    # end
+    
+    super_admin = SuperAdmin.where(email: access_tocken.info.email).first
+    unless super_admin
+      super_admin = SuperAdmin.create(
+        email: access_tocken.info.email,
+        password: Devise.friendly_token[0, 20],
+        provider: access_tocken.provider,
+        uid: access_tocken.uid,
+        name: access_tocken.info.name
+      )
       @schl = School.create(:name => 'Provider_created')
-      user.name = access_tocken.info.name   # assuming the user model has a name
-      user.school = @schl
+      super_admin.school = @schl
+      super_admin.save
+      
+      if super_admin.persisted?
+        login_user = SuperAdmin.find_by_email(access_tocken.info.email)
+        login_user.add_role(:super_admin)
+      end
+
     end
+
+    super_admin
   end
 
-    # super_admin = SuperAdmin.where(email: access_tocken.info.email).first
-    # unless super_admin
-    #   super_admin = SuperAdmin.create(
-    #     email: access_tocken.info.email,
-    #     password: Devise.friendly_token[0, 20]
-    #   )
-    #   super_admin.name = access_tocken.info.name
-    #   super_admin.save
-    # end
-    # super_admin
 end
