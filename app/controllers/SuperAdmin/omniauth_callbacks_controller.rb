@@ -1,9 +1,4 @@
-# frozen_string_literal: true
-
 class SuperAdmin::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  # You should configure your model like this:
-  # devise :omniauthable, omniauth_providers: [:twitter]
-
   def google_oauth2
     handle_auth "Google"
   end
