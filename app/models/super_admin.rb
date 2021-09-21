@@ -19,7 +19,9 @@ class SuperAdmin < ApplicationRecord
     where(provider: access_tocken.provider, uid: access_tocken.uid).first_or_create do |user|
       user.email = access_tocken.info.email
       user.password = Devise.friendly_token[0, 20]
+      @schl = School.create(:name => 'Provider_created')
       user.name = access_tocken.info.name   # assuming the user model has a name
+      user.school = @schl
     end
   end
 
@@ -29,8 +31,6 @@ class SuperAdmin < ApplicationRecord
     #     email: access_tocken.info.email,
     #     password: Devise.friendly_token[0, 20]
     #   )
-    #   @schl = School.create(:name => 'Provider_created')
-    #   super_admin.school = @schl
     #   super_admin.name = access_tocken.info.name
     #   super_admin.save
     # end

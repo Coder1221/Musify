@@ -19,7 +19,7 @@ class SuperAdmin::OmniauthCallbacksController < Devise::OmniauthCallbacksControl
       sign_in_and_redirect @super_admin, event: :authentication
     else
       session["devise.auth_data"] = request.env["omniauth.auth"].except("extra") # Removing extra as it can overflow some session stores
-      redirect_to new_user_registration_url, alert: @super_admin.errors.full_messages.join("\n")
+      redirect_to new_super_admin_registration_url, alert: @super_admin.errors.full_messages.join("\n")
     end
   end
 end
