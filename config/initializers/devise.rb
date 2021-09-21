@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Devise.setup do |config|
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
   require 'devise/orm/active_record'
@@ -12,6 +13,6 @@ Devise.setup do |config|
   config.reset_password_within = 6.hours
   config.scoped_views = true
   config.sign_out_via = :delete
-  config.omniauth :google_oauth2 ,ENV['G_CLIENT_ID'] ,ENV['G_CLIENT_SEC'], provider_ignores_state: Rails.env.development?, {}
+  config.omniauth :google_oauth2 ,ENV['G_CLIENT_ID'] ,ENV['G_CLIENT_SEC'],{}, provider_ignores_state: Rails.env.development?
   config.omniauth :facebook , ENV['FB_APP_ID'] ,ENV['FP_APP_SECRET'],  scope: 'email', info_fields: 'email,name' , token_params: { parse: :json }
 end
