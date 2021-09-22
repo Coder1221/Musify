@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :lectures
   resources :dash_board
   
   # make it plural 
