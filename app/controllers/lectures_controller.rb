@@ -25,7 +25,7 @@ class LecturesController < ApplicationController
 
     respond_to do |format|
       if @lecture.save
-        format.html { redirect_to @lecture, notice: "Lecture was successfully created." }
+        format.html { redirect_to lectures_path, notice: "Lecture was successfully created." }
         format.json { render :show, status: :created, location: @lecture }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class LecturesController < ApplicationController
   def update
     respond_to do |format|
       if @lecture.update(lecture_params)
-        format.html { redirect_to @lecture, notice: "Lecture was successfully updated." }
+        format.html { redirect_to lectures_path, notice: "Lecture was successfully updated." }
         format.json { render :show, status: :ok, location: @lecture }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -64,6 +64,7 @@ class LecturesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def lecture_params
-      params.fetch(:lecture, {})
+      # params.fetch(:lecture, {:subject , :title})
+      params.require(:lecture).permit(:subject ,:title)
     end
 end

@@ -1,17 +1,12 @@
 <%= form_with(model: lecture) do |form| %>
-  <% if lecture.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(lecture.errors.count, "error") %> prohibited this lecture from being saved:</h2>
 
-      <ul>
-        <% lecture.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= form.label "Lecture Title" %>
+  <%= form.text_field :title %>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= form.label "Subject" %>
+  <%= form.text_field :subject %>
+  
+  <br/>
+ 
+  <%= form.submit %>
 <% end %>

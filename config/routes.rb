@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :lectures
+  resources :lectures do
+    member do
+      get :delete
+    end
+  end
+  
   resources :dash_board
   
   # make it plural 
