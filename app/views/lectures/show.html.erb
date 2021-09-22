@@ -1,4 +1,6 @@
-<p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_lecture_path(@lecture) %> |
+<h3>Title</h3>
+<%= @lecture.title%>
+<h3>Subject</h3>
+<%= @lecture.subject%>
+<br/>
 <%= link_to 'Back', lectures_path %>
