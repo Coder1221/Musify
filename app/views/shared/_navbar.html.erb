@@ -36,6 +36,7 @@
 <% if current_super_admin %>
   <div class="sidebar">
     <% @id = School.find_by_id(current_super_admin.school_id) %>
+    <a href="/">Dash Board</a>
     <a href="<%= edit_school_path(@id) %>">School Information</a>
     <a href="<%= users_path %>">Users</a>
     <a href="<%= new_super_admin_invitation_path %>">Invite</a>
