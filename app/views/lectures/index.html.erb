@@ -1,21 +1,25 @@
+<div class="container-sm">
 <h1>Lectures</h1>
 
-<table>
+<table class= "table  table-hover table-sm center">
   <thead>
     <tr>
+      <th>ID</th>
       <th>Title</th>
       <th>Subject</th>
+      <th>Actions</th>
     </tr>
   </thead>
 
   <tbody>
     <% @lectures.each do |lecture| %>
       <tr>
+        <th scope="row"> <%= lecture.id %> </th>
         <td><%= lecture.title   %></td>
         <td><%= lecture.subject %></td>
-        <td><%= link_to 'Show', lecture %></td>
-        <td><%= link_to 'Edit', edit_lecture_path(lecture) %></td>
-        <td><%= link_to 'Destroy', lecture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', lecture %>
+        <%= link_to 'Edit', edit_lecture_path(lecture) %>
+        <%= link_to 'Destroy', lecture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,3 +28,4 @@
 <br>
 
 <%= link_to 'ADD Lecture', new_lecture_path %>
+</div>
