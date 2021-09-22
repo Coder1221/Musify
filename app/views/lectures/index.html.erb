@@ -11,6 +11,7 @@
   <thead>
     <tr>
       <th>ID</th>
+      <th>User-ID</th>
       <th>Title</th>
       <th>Subject</th>
       <th>Actions</th>
@@ -21,6 +22,7 @@
     <% @lectures.each do |lecture| %>
       <tr>
         <th scope="row"> <%= lecture.id %> </th>
+        <th><%= lecture.super_admin_id %></th>
         <td><%= lecture.title   %></td>
         <td><%= lecture.subject %></td>
         <td><%= link_to 'Show', lecture %>
