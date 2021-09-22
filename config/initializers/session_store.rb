@@ -1,1 +1,1 @@
-Rails.application.config.session_store :cookie_store, key: '_app_session', domain: 'musifyschool.herokuapp.com'
+Rails.application.config.session_store :cookie_store, key: '_app_session', domain: :all
