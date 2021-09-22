@@ -1,5 +1,11 @@
 <div class="container-sm">
-<h1>Lectures</h1>
+<h1>Lectures
+  <a href="<%= new_lecture_path  %>" class = "btn btn-primary">
+      <span>
+        <strong>ADD Lecture</strong>
+      </span>
+  </a>
+</h1>
 
 <table class= "table  table-hover table-sm center">
   <thead>
@@ -25,7 +31,4 @@
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'ADD Lecture', new_lecture_path %>
 </div>

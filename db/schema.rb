@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2021_09_22_075924) do
   end
 
   create_table "lectures", force: :cascade do |t|
+    t.integer "super_admin_id"
     t.string "title"
     t.string "subject"
     t.datetime "created_at", precision: 6, null: false
