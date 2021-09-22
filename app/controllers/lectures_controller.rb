@@ -1,9 +1,11 @@
 class LecturesController < ApplicationController
   before_action :set_lecture, only: %i[ show edit update destroy ]
+  before_action :authenticate_super_admin!
+  load_and_authorize_resource
+
 
   # GET /lectures or /lectures.json
   def index
-    @lectures = Lecture.all
   end
 
   # GET /lectures/1 or /lectures/1.json
@@ -12,7 +14,6 @@ class LecturesController < ApplicationController
 
   # GET /lectures/new
   def new
-    @lecture = Lecture.new
   end
 
   # GET /lectures/1/edit
@@ -22,12 +23,12 @@ class LecturesController < ApplicationController
   # POST /lectures or /lectures.json
   def create
     @lecture = Lecture.new(lecture_params)
-
     respond_to do |format|
       if @lecture.save
         format.html { redirect_to lectures_path, notice: "Lecture was successfully created." }
         format.json { render :show, status: :created, location: @lecture }
       else
+        flash[:notice] = @lecture.errors.messages
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @lecture.errors, status: :unprocessable_entity }
       end
@@ -65,6 +66,6 @@ class LecturesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def lecture_params
       # params.fetch(:lecture, {:subject , :title})
-      params.require(:lecture).permit(:subject ,:title)
+      params.require(:lecture).permit(:subject ,:title ,:super_admin_id)
     end
 end
