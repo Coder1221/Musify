@@ -41,7 +41,7 @@ class LecturesController < ApplicationController
   def update
     respond_to do |format|
       if @lecture.update(lecture_params)
-        format.html { redirect_to lectures_path, notice: "Lecture was successfully updated." }
+        format.html { redirect_to edit_lecture_path(@lecture), notice: "Lecture was successfully updated." }
         format.json { render :show, status: :ok, location: @lecture }
       else
         format.html { render :edit, status: :unprocessable_entity }
