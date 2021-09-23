@@ -3,4 +3,17 @@
 <h3>Subject</h3>
 <%= @lecture.subject%>
 <br/>
+<hr/>
+<table class = 'table table-hover center table-sm'>
+    <tr>
+        <th>Desciption</th>
+        <th>content</th>
+    </tr>
+    <% @lecture.lecture_contents.each do |content|%>
+    <tr>
+        <td><%= content.desciption %></td>
+        <td><%= content.content %></td>
+    </tr>
+    <% end %>
+</table>
 <%= link_to 'Back', lectures_path %>
