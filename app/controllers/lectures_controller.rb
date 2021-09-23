@@ -14,10 +14,12 @@ class LecturesController < ApplicationController
 
   # GET /lectures/new
   def new
+    @lecture.lecture_contents.build
   end
 
   # GET /lectures/1/edit
   def edit
+    # @lecture.lecture_contents.build
   end
 
   # POST /lectures or /lectures.json
@@ -65,7 +67,7 @@ class LecturesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def lecture_params
-      # params.fetch(:lecture, {:subject , :title})
-      params.require(:lecture).permit(:subject ,:title ,:super_admin_id)
+      params.require(:lecture).permit(:subject ,:title ,:super_admin_id , 
+          lecture_contents_attributes: [ :id, :lecture_id, :desciption ,:content , :_destroy ])
     end
 end
