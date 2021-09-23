@@ -2,7 +2,7 @@ class SuperAdmin < ApplicationRecord
   rolify
   resourcify
   attr_accessor :invited_by_role, :schoolname #virtual attribute
-  devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2, :facebook]
+  devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: %i[google_oauth2 facebook]
   belongs_to :school
 
   enum status: {
