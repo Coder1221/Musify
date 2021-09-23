@@ -13,20 +13,18 @@ class SuperAdmin::SessionsController < Devise::SessionsController
   def create
     self.resource = warden.authenticate!(auth_options)
     sign_in(resource_name, resource)
-    
-    
+
     if self.resource.status_suspended?
       sign_out(resource_name)
-      flash[:notice] = "Suspened Account"
+      flash[:notice] = 'Suspened Account'
       sign_out_and_redirect(current_super_admin)
     else
       # for device current user
-      session[:current_user_id]  = self.resource.id
+      session[:current_user_id] = self.resource.id
       set_flash_message!(:notice, :signed_in)
       yield resource if block_given?
       respond_with resource, location: after_sign_in_path_for(resource)
-    end 
-
+    end
   end
 
   # DELETE /resource/sign_out
