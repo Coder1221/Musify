@@ -67,7 +67,7 @@ class LecturesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def lecture_params
-      params.require(:lecture).permit(:subject ,:title ,:super_admin_id , 
-          lecture_contents_attributes: [ :id, :lecture_id, :desciption ,:content , :_destroy ])
+      params.require(:lecture).permit(:subject ,:title ,:super_admin_id, 
+          lecture_contents_attributes: [ :id, :lecture_id, :desciption ,:content , :_destroy , pdfs: [] ])
     end
 end

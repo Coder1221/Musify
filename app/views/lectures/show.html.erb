@@ -6,13 +6,22 @@
 <hr/>
 <table class = 'table table-hover center table-sm'>
     <tr>
+        <th> PDFS </th>
         <th>Desciption</th>
         <th>content</th>
     </tr>
+
     <% @lecture.lecture_contents.each do |content|%>
     <tr>
-        <td><%= content.desciption %></td>
-        <td><%= content.content %></td>
+        <td>
+            <% if content.pdfs.attached? %>
+                <% content.pdfs.each do |pdf| %>
+                    <%= link_to pdf.filename ,rails_blob_path(pdf , disposition ="attachment") %>
+                <% end %>
+            <% end %>
+        </td>
+        <td> <%= content.desciption %> </td>
+        <td> <%= content.content %> </td>
     </tr>
     <% end %>
 </table>
