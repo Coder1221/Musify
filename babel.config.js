@@ -1,23 +1,23 @@
 module.exports = function(api) {
-  var validEnv = ['development', 'test', 'production']
-  var currentEnv = api.env()
-  var isDevelopmentEnv = api.env('development')
-  var isProductionEnv = api.env('production')
-  var isTestEnv = api.env('test')
+  var validEnvironment = ['development', 'test', 'production']
+  var currentEnvironment = api.env()
+  var isDevelopmentEnvironment = api.env('development')
+  var isProductionEnvironment = api.env('production')
+  var isTestEnvironment = api.env('test')
 
-  if (!validEnv.includes(currentEnv)) {
+  if (!validEnvironment.includes(currentEnvironment)) {
     throw new Error(
       'Please specify a valid `NODE_ENV` or ' +
         '`BABEL_ENV` environment variables. Valid values are "development", ' +
         '"test", and "production". Instead, received: ' +
-        JSON.stringify(currentEnv) +
+        JSON.stringify(currentEnvironment) +
         '.'
     )
   }
 
   return {
     presets: [
-      isTestEnv && [
+      isTestEnvironment && [
         '@babel/preset-env',
         {
           targets: {
@@ -25,7 +25,7 @@ module.exports = function(api) {
           }
         }
       ],
-      (isProductionEnv || isDevelopmentEnv) && [
+      (isProductionEnvironment || isDevelopmentEnvironment) && [
         '@babel/preset-env',
         {
           forceAllTransforms: true,
@@ -39,7 +39,7 @@ module.exports = function(api) {
     plugins: [
       'babel-plugin-macros',
       '@babel/plugin-syntax-dynamic-import',
-      isTestEnv && 'babel-plugin-dynamic-import-node',
+      isTestEnvironment && 'babel-plugin-dynamic-import-node',
       '@babel/plugin-transform-destructuring',
       [
         '@babel/plugin-proposal-class-properties',
