@@ -24,7 +24,7 @@ class SuperAdmin < ApplicationRecord
     if access_tocken.provider == 'facebook'
       @super_admin = SuperAdmin.where(uid: access_tocken.uid).first
       unless @super_admin
-        @temp_email = access_tocken.info.name.gsub(' ','_') + access_tocken.uid.to_s + '@gmail.com'
+        @temp_email = access_tocken.info.name.tr(' ','_') + access_tocken.uid.to_s + '@gmail.com'
         @super_admin = SuperAdmin.create(
           email: @temp_email,
           password: Devise.friendly_token[0,20],
