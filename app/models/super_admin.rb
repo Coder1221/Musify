@@ -1,7 +1,7 @@
 class SuperAdmin < ApplicationRecord
   rolify
   resourcify
-  attr_accessor :invited_by_role, :schoolname #virtual attribute
+  attr_accessor :invited_by_role, :schoolname # virtual attribute
   devise :invitable, :database_authenticatable, :registerable, :recoverable, 
           :rememberable, :validatable, :omniauthable,
            omniauth_providers: [:google_oauth2, :facebook]
