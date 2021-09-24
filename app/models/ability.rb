@@ -15,7 +15,7 @@ class Ability
       @edit_able_roles = @all_roles.slice(@ind, @all_roles.length)
       @users_id = []
 
-      SuperAdmin.all().each do |user_|
+      SuperAdmin.all().find_each do |user_|
         if @edit_able_roles.include?(user_.user_role)
           @users_id << user_.id
         end
