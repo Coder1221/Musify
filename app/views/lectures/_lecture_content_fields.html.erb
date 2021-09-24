@@ -1,0 +1,9 @@
+<div class = 'nested-fields'>
+    <%= f.label "Description"%>
+    <%= f.text_field :desciption %>
+    <%= f.label "Content" %>
+    <%= f.text_field :content %>
+    <%= f.file_field :pdfs , multiple: true %>
+    <%= f.hidden_field :_destroy %>
+    <%= link_to_remove_association "Remove" , f ,class:'btn btn-primary btn-sm' %>
+</div>

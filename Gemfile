@@ -40,6 +40,11 @@ gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-facebook'
 gem 'activerecord-session_store'
 gem 'cocoon'
+gem 'simple_form'
+gem 'jquery-rails'
+gem 'image_processing'
+gem "rails_best_practices"
+gem "solargraph"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

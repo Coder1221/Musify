@@ -1,0 +1,26 @@
+<%= simple_form_for(@lecture) do |form| %>
+  
+  <%= form.label "Lecture Title" %>
+  <%= form.text_field :title %>
+
+  <%= form.label "Subject" %>
+  <%= form.text_field :subject %>
+
+  <%= form.hidden_field :super_admin_id %>
+  <br/> <br/>
+
+  <h3>Lecture Content</h3>
+  <div class = 'tasks'>
+    <%= form.simple_fields_for :lecture_contents do |content| %>
+      <%= render 'lecture_content_fields' , f: content %>
+    <% end %>
+    <div class= 'links'>
+      <%= link_to_add_association 'Add LectureContent', form , :lecture_contents %>
+    </div>
+  </div>
+  
+  <br/>
+  <%= form.button :submit ,class: 'btn btn-sm btn-outline-danger' %>
+  <br/> <br/>
+  </div>
+<% end %>

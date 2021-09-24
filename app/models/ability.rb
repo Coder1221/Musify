@@ -4,8 +4,10 @@ class Ability
   def initialize(user)
     @all_roles = [:admin, :teacher, :student]
     if user.user_role == :super_admin
-      can :manage, SuperAdmin
-      can :manage, School, :id => user.school_id.to_i
+      can :manage , SuperAdmin
+      can :manage , School, :id => user.school_id.to_i
+      can :manage , Lecture, :super_admin_id => user.id
+      can :manage , LectureContent
     end
 
     if @all_roles.include?(user.user_role) && user.user_role != :student

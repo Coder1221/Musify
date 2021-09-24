@@ -2,8 +2,11 @@ class SuperAdmin < ApplicationRecord
   rolify
   resourcify
   attr_accessor :invited_by_role, :schoolname #virtual attribute
-  devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2, :facebook]
+  devise :invitable, :database_authenticatable, :registerable, :recoverable, 
+          :rememberable, :validatable, :omniauthable,
+           omniauth_providers: [:google_oauth2, :facebook]
   belongs_to :school
+  has_many :lectures , dependent: :destroy 
 
   enum status: {
     suspended: 0,
@@ -15,9 +18,9 @@ class SuperAdmin < ApplicationRecord
   end
 
   def self.from_omniauth(access_tocken)
-    puts '<------------------------------------------------------------------------------------------------------------------------>' 
-    puts access_tocken 
-    puts '<------------------------------------------------------------------------------------------------------------------------>' 
+    # puts '<------------------------------------------------------------------------------------------------------------------------>' 
+    # puts access_tocken 
+    # puts '<------------------------------------------------------------------------------------------------------------------------>' 
     if access_tocken.provider == 'facebook'
       @super_admin = SuperAdmin.where(uid: access_tocken.uid).first
       unless @super_admin
