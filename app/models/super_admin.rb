@@ -4,7 +4,7 @@ class SuperAdmin < ApplicationRecord
   attr_accessor :invited_by_role, :schoolname #virtual attribute
   devise :invitable, :database_authenticatable, :registerable, :recoverable, 
           :rememberable, :validatable, :omniauthable,
-           omniauth_providers: [:google_oauth2, :facebook]
+           omniauth_providers: %i[google_oauth2 facebook]
   belongs_to :school
   has_many :lectures , dependent: :destroy 
 

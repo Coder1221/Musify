@@ -2,7 +2,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    @all_roles = [:admin, :teacher, :student]
+    @all_roles = %i[admin teacher student]
     if user.user_role == :super_admin
       can :manage , SuperAdmin
       can :manage , School, :id => user.school_id.to_i
