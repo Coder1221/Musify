@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  # get 'check_out/create'
+  # get 'products/index'
   resources :lectures do
     member do
       get :delete
@@ -7,7 +9,7 @@ Rails.application.routes.draw do
   end
   
   resources :dash_board
-  
+  resources :check_out, only: [:create]
   # make it plural 
   resources :school do
     member do

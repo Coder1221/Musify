@@ -1,4 +1,4 @@
-<div class="container-sm">
+<div class = "container-sm">
 <h1>Lectures
   <a href="<%= new_lecture_path  %>" class = "btn btn-primary">
       <span>
@@ -6,6 +6,10 @@
       </span>
   </a>
 </h1>
+
+<hr/> 
+ Stripe Customer ID : <%= current_super_admin.stripe_customer_id %>
+<hr/>
 
 <table class= "table  table-hover table-sm center">
   <thead>
@@ -15,6 +19,8 @@
       <th>Title</th>
       <th>Subject</th>
       <th>Actions</th>
+      <th>Price</th>
+      <th>CheckOut</th>
     </tr>
   </thead>
 
@@ -28,9 +34,13 @@
         <td><%= link_to 'Show', lecture %>
         <%= link_to 'Edit', edit_lecture_path(lecture) %>
         <%= link_to 'Destroy', lecture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% @response = Stripe::Price.retrieve(lecture.lec_stripe_price_id) %>
+        <td> <%=  (@response.unit_amount/100).to_s + '$' %> </td>
+        <td> <%= link_to 'Check Out' , check_out_index_path(price: lecture.lec_stripe_price_id) , method: :post , remote: true %> </td>
       </tr>
     <% end %>
   </tbody>
+
 </table>
 
 </div>
