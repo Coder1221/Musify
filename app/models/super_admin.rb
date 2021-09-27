@@ -12,6 +12,16 @@ class SuperAdmin < ApplicationRecord
     suspended: 0,
     live: 1,
   }, _prefix: true
+  
+  def to_s
+    email
+  end
+
+  after_create do
+    customer = Stripe::Customer.create(email: self.email)
+    update(stripe_customer_id: customer.id)
+  end
+
 
   def user_role
     roles.first.name.to_sym

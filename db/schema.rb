@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_22_094703) do
+ActiveRecord::Schema.define(version: 2021_09_27_071058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,8 @@ ActiveRecord::Schema.define(version: 2021_09_22_094703) do
     t.string "subject"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "lec_stripe_id"
+    t.string "lec_stripe_price_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -103,6 +105,7 @@ ActiveRecord::Schema.define(version: 2021_09_22_094703) do
     t.integer "status", default: 1
     t.string "provider"
     t.string "uid"
+    t.string "stripe_customer_id"
     t.index ["email"], name: "index_super_admins_on_email", unique: true
     t.index ["invitation_token"], name: "index_super_admins_on_invitation_token", unique: true
     t.index ["invited_by_id"], name: "index_super_admins_on_invited_by_id"
