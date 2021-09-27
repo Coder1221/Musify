@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2021_09_27_071058) do
-=======
-ActiveRecord::Schema.define(version: 2021_09_22_094703) do
->>>>>>> 113b6c1926230cc4341dec8db20107381b6f7983
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,11 +57,8 @@ ActiveRecord::Schema.define(version: 2021_09_22_094703) do
     t.string "subject"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-<<<<<<< HEAD
     t.string "lec_stripe_id"
     t.string "lec_stripe_price_id"
-=======
->>>>>>> 113b6c1926230cc4341dec8db20107381b6f7983
   end
 
   create_table "roles", force: :cascade do |t|
