@@ -1,13 +1,23 @@
 Rails.application.routes.draw do
 
+<<<<<<< HEAD
+  # get 'check_out/create'
+  # get 'products/index'
+=======
+>>>>>>> 113b6c1926230cc4341dec8db20107381b6f7983
   resources :lectures do
     member do
       get :delete
     end
   end
+<<<<<<< HEAD
+=======
   
   resources :dash_board
+>>>>>>> 113b6c1926230cc4341dec8db20107381b6f7983
   
+  resources :dash_board
+  resources :check_out, only: [:create]
   # make it plural 
   resources :school do
     member do

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+<div class = "container-sm">
+=======
 <div class="container-sm">
+>>>>>>> 113b6c1926230cc4341dec8db20107381b6f7983
 <h1>Lectures
   <a href="<%= new_lecture_path  %>" class = "btn btn-primary">
       <span>
@@ -7,6 +11,13 @@
   </a>
 </h1>
 
+<<<<<<< HEAD
+<hr/> 
+ Stripe Customer ID : <%= current_super_admin.stripe_customer_id %>
+<hr/>
+
+=======
+>>>>>>> 113b6c1926230cc4341dec8db20107381b6f7983
 <table class= "table  table-hover table-sm center">
   <thead>
     <tr>
@@ -15,6 +26,11 @@
       <th>Title</th>
       <th>Subject</th>
       <th>Actions</th>
+<<<<<<< HEAD
+      <th>Price</th>
+      <th>CheckOut</th>
+=======
+>>>>>>> 113b6c1926230cc4341dec8db20107381b6f7983
     </tr>
   </thead>
 
@@ -28,9 +44,19 @@
         <td><%= link_to 'Show', lecture %>
         <%= link_to 'Edit', edit_lecture_path(lecture) %>
         <%= link_to 'Destroy', lecture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<<<<<<< HEAD
+        <% @response = Stripe::Price.retrieve(lecture.lec_stripe_price_id) %>
+        <td> <%=  (@response.unit_amount/100).to_s + '$' %> </td>
+        <td> <%= link_to 'Check Out' , check_out_index_path(price: lecture.lec_stripe_price_id) , method: :post , remote: true %> </td>
       </tr>
     <% end %>
   </tbody>
+
+=======
+      </tr>
+    <% end %>
+  </tbody>
+>>>>>>> 113b6c1926230cc4341dec8db20107381b6f7983
 </table>
 
 </div>
