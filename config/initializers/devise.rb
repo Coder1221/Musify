@@ -12,6 +12,13 @@ Devise.setup do |config|
   config.reset_password_within = 6.hours
   config.scoped_views = true
   config.sign_out_via = :delete
-  config.omniauth :google_oauth2 ,ENV['G_CLIENT_ID'] ,ENV['G_CLIENT_SEC'],{}
-  config.omniauth :facebook , ENV['FB_APP_ID'] ,ENV['FP_APP_SECRET'],  scope: 'email', info_fields: 'email,name' , token_params: { parse: :json }
+  config.omniauth :google_oauth2, ENV['G_CLIENT_ID'], ENV['G_CLIENT_SEC'], {}
+  config.omniauth :facebook,
+                  ENV['FB_APP_ID'],
+                  ENV['FP_APP_SECRET'],
+                  scope: 'email',
+                  info_fields: 'email,name',
+                  token_params: {
+                    parse: :json
+                  }
 end
