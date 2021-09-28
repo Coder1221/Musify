@@ -1,5 +1,5 @@
 class SuperAdmin::InvitationsController < Devise::InvitationsController
-  before_action :configure_permitted_parameters, only: [:update, :new, :create]
+  before_action :configure_permitted_parameters, only: %i[update new create]
 
   def create
     @role = params[:super_admin][:invited_by_role].downcase!
