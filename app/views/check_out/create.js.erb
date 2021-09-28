@@ -1,5 +1,4 @@
-var api_key  = process.env.STRIPE_SECRET_KEY
-var stripe = Stripe(api_key)
+var stripe = Stripe('<%= ENV['STRIPE_PUBLIC_KEY']%>')
 
 stripe.redirectToCheckout({
     sessionId: '<%= @session.id %>'
