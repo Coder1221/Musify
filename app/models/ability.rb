@@ -3,21 +3,21 @@ class Ability
 
   def initialize(user)
 
-    if [:super_admin ,:admin , :teacher].include?(user.user_role)
+    if %i[super_admin admin teacher].include?(user.user_role)
       can :manage , School, :id => user.school_id.to_i
       can :manage , Lecture
       can :manage , LectureContent
     end
     
     if user.user_role == :super_admin
-      can :manage , SuperAdmin ,:id => SuperAdmin.with_roles([:admin , :teacher ,:student]).where(:school_id => user.school_id).pluck(:id) + [user.id]
-      can :activate_or_deactivate, SuperAdmin , :id => SuperAdmin.with_roles([:admin , :teacher ,:student]).pluck(:id)
+      can :manage , SuperAdmin ,:id => SuperAdmin.with_roles(%i[admin teacher student]).where(:school_id => user.school_id).pluck(:id) + [user.id]
+      can :activate_or_deactivate, SuperAdmin , :id => SuperAdmin.with_roles(%i[admin teacher student]).pluck(:id)
     end
 
     if user.user_role == :admin
       can :manage , SuperAdmin ,:school_id => user.school_id.to_i
-      can :manage ,SuperAdmin , :id => SuperAdmin.with_roles([:teacher, :student]).where(:school_id => user.school_id).pluck(:id) + [user.id]
-      can :activate_or_deactivate, SuperAdmin , :id => SuperAdmin.with_roles([:teacher ,:student]).pluck(:id)
+      can :manage ,SuperAdmin , :id => SuperAdmin.with_roles(%i[teacher student]).where(:school_id => user.school_id).pluck(:id) + [user.id]
+      can :activate_or_deactivate, SuperAdmin , :id => SuperAdmin.with_roles(%i[teacher student]).pluck(:id)
     end
 
     if user.user_role == :teacher

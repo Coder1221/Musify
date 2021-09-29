@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :dash_board
   resources :check_out, only: [:create]
   # make it plural 
-  resources :school , only: [:index , :edit, :update, :show]
+  resources :school , only: %i[index edit update show]
 
   resources :users do
     member do
