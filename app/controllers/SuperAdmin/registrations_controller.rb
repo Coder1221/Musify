@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class SuperAdmin::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
-  load_and_authorize_resource :SuperAdmin, :parent => false, only: [:edit, :update]
+  load_and_authorize_resource :SuperAdmin, :parent => false, only: %i[edit update]
 
   # GET /resource/sign_up
   # def new
@@ -87,7 +87,7 @@ class SuperAdmin::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :schoolname])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name schoolname])
   end
 
   def update_params
