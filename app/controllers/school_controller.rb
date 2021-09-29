@@ -10,10 +10,10 @@ class SchoolController < ApplicationController
   end
 
   def show
+    @school = School.find(params[:id])
   end
 
   def edit
-    # @school = School.find(params[:id])
     @school = @schools.first
   end
 
@@ -22,10 +22,11 @@ class SchoolController < ApplicationController
     if @school.update(update_params)
       @school.save
       flash[:notice] = "School Information Updated"
+      render "show"
     else
       flash[:notice] = "Somet thin wrong"
+      render "edit"
     end
-    render "edit"
   end
 
   protected

@@ -1,0 +1,18 @@
+<h1> School Information</h1>
+    <% if @school.avatar.present? %>
+        <%= image_tag(@school.avatar , height: 100 , width: 100) %>
+    <% end %>
+<hr/>
+
+<h3> Name: </h3>
+<h4> <%= @school.name%> </h4>
+<h3> Phone: </h3>
+<h4> <%= @school.phone%> </h4>
+<h3> Email: </h3>
+<h4> <%= @school.email%> </h4>
+<h3> City: </h3>
+<h4> <%= @school.city%> </h4>
+<h3> Zip_code: </h3>
+<h4> <%= @school.zip_code %> </h4>
+<h3> Address: </h3>
+<h4> <%= @school.adress%> </h4>
