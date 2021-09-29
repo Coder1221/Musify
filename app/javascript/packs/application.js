@@ -37,7 +37,7 @@ $(document).ready(function() {
             var $this = $(this);
             var input = $this.val();
             if (e.keyCode != 8) {
-                input = input.replace(/[^0-9]/g, '');
+                input = input.replace(/\D/g, '');
                 if (input.length == 1) {
                     var area = input.substr(0, 3);
                 } else {
@@ -54,7 +54,7 @@ $(document).ready(function() {
     $("input[type='tel']").each(function() {
         $(this).bind("paste ", function(e) {
             var input = e.originalEvent.clipboardData.getData('text');
-            input = input.replace(/[^0-9]/g, '');
+            input = input.replace(/\D/g, '');
             if (input.length == 11) {
                 input = input.substr(1, 10)
             }
