@@ -4,9 +4,10 @@ class SchoolController < ApplicationController
 
   def index
     @users = @schools.first.SuperAdmin
-    @count_hash = @users.each_with_object(Hash.new(0)) do |user ,hash|
-      hash[user.user_role] += 1
-    end
+    @count_hash =
+      @users.each_with_object(Hash.new(0)) do |user, hash|
+        hash[user.user_role] += 1
+      end
   end
 
   def show
@@ -21,11 +22,11 @@ class SchoolController < ApplicationController
     @school = School.find(params[:id])
     if @school.update(update_params)
       @school.save
-      flash[:notice] = "School Information Updated"
-      render "show"
+      flash[:notice] = 'School Information Updated'
+      render 'show'
     else
-      flash[:notice] = "Somet thin wrong"
-      render "edit"
+      flash[:notice] = 'Somet thin wrong'
+      render 'edit'
     end
   end
 
