@@ -22,8 +22,10 @@ class SchoolController < ApplicationController
     if @school.update(update_params)
       @school.save
       flash[:notice] = "School Information Updated"
-      render "edit"
+    else
+      flash[:notice] = "Somet thin wrong"
     end
+    render "edit"
   end
 
   protected

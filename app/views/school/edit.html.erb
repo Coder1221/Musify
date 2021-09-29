@@ -53,7 +53,7 @@
         </div>
         
         <div class = 'spl_input'>
-            <%= f.telephone_field(:phone) %>
+            <%= f.text_field(:phone , type: "tel") %>
         </div>
     </div>
 
@@ -73,7 +73,7 @@
         </div>
         
         <div class = 'spl_input'>
-            <%= f.text_field(:zip_code) %>
+            <%= f.number_field(:zip_code ,min: "1000" ,max: "9999") %>
         </div>
     </div>
 </div>
