@@ -39,12 +39,12 @@ $(document).ready(function() {
             if (e.keyCode != 8) {
                 input = input.replace(/[^0-9]/g, '');
                 if (input.length == 1) {
-                    var area = input.substr(0, 3);
+                    var area = input.slice(0, 3);
                 } else {
-                    var area = input.substr(1, 3);
+                    var area = input.slice(1, 4);
                 }
-                var pre = input.substr(4, 3);
-                var tel = input.substr(7, 4);
+                var pre = input.slice(4, 7);
+                var tel = input.slice(7, 11);
                 $this.val(setPhoneNumber(area, pre, tel));
             }
         });
@@ -56,11 +56,11 @@ $(document).ready(function() {
             var input = e.originalEvent.clipboardData.getData('text');
             input = input.replace(/[^0-9]/g, '');
             if (input.length == 11) {
-                input = input.substr(1, 10)
+                input = input.slice(1, 11)
             }
-            var area = input.substr(0, 3);
-            var pre = input.substr(3, 3);
-            var tel = input.substr(6, 4);
+            var area = input.slice(0, 3);
+            var pre = input.slice(3, 6);
+            var tel = input.slice(6, 10);
             $(this).val(setPhoneNumber(area, pre, tel));
             e.preventDefault()
         });
