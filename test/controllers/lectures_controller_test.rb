@@ -1,44 +1,44 @@
-require "test_helper"
+require 'test_helper'
 
 class LecturesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @lecture = lectures(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get lectures_url
     assert_response :success
   end
 
-  test "should get new" do
+  test 'should get new' do
     get new_lecture_url
     assert_response :success
   end
 
-  test "should create lecture" do
+  test 'should create lecture' do
     assert_difference('Lecture.count') do
-      post lectures_url, params: { lecture: {  } }
+      post lectures_url, params: { lecture: {} }
     end
 
     assert_redirected_to lecture_url(Lecture.last)
   end
 
-  test "should show lecture" do
+  test 'should show lecture' do
     get lecture_url(@lecture)
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get edit_lecture_url(@lecture)
     assert_response :success
   end
 
-  test "should update lecture" do
-    patch lecture_url(@lecture), params: { lecture: {  } }
+  test 'should update lecture' do
+    patch lecture_url(@lecture), params: { lecture: {} }
     assert_redirected_to lecture_url(@lecture)
   end
 
-  test "should destroy lecture" do
+  test 'should destroy lecture' do
     assert_difference('Lecture.count', -1) do
       delete lecture_url(@lecture)
     end

@@ -4,8 +4,9 @@ class SuperAdmin::InvitationsController < Devise::InvitationsController
   def create
     @role = params[:super_admin][:invited_by_role].downcase!
     params[:super_admin].delete :invited_by_role
+
     # for crossing the validation of name field always exists
-    params[:super_admin][:name] = "Default"
+    params[:super_admin][:name] = 'Default'
     self.resource = invite_resource
 
     self.resource.add_role(@role)
@@ -37,6 +38,7 @@ class SuperAdmin::InvitationsController < Devise::InvitationsController
     raw_invitation_token = update_resource_params[:invitation_token]
     self.resource = accept_resource
     invitation_accepted = resource.errors.empty?
+
     # for current user in application
     session[:current_user_id] = self.resource.id # my line
     yield resource if block_given?
@@ -62,12 +64,14 @@ class SuperAdmin::InvitationsController < Devise::InvitationsController
 
   def invite_params
     devise_parameter_sanitizer.sanitize(:invite)
+
     # this for data base mass params without below line (invite_params) wiil not work
     params.require(:super_admin).permit(:email, :schoolname, :name)
   end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:invite_key_fields, keys: [:email])
+
     # this for permit :name params after submit field
     devise_parameter_sanitizer.permit(:accept_invitation, keys: [:name])
   end
