@@ -35,78 +35,77 @@
 
 <% if current_super_admin %>
   <div class="sidebar">
-    <% @id = School.find_by_id(current_super_admin.school_id) %>
-    <a href="/">School Information</a>
-    <a href="<%= school_index_url %>"> Dash Board</a>
-    <a href="<%= users_path %>">Users</a>
-    <a href="<%= new_super_admin_invitation_path %>">Invite</a>
-    <a href="<%= lectures_path %>">Lectures</a>
+    <a class = '<%= active_or_inactive(controller ,"school_edit")%>', href="/"> School Information</a>
+    <a class = '<%= active_or_inactive(controller ,"school_index")%>' href= "<%= school_index_url %>"> Dash Board</a>
+    <a class = '<%= active_or_inactive(controller ,"users_index")%>'  href= "<%= users_path %>"> Users</a>
+    <a class = '<%= active_or_inactive(controller ,"invitations_new")%>'  href= "<%= new_super_admin_invitation_path %>"> Invite</a>
+    <a class = '<%= active_or_inactive(controller ,"lectures_index")%>'  href= "<%= lectures_path %>"> Lectures</a>
   </div>
 <% end %>
 
 
 
 <style>
-.oof{
-  text-align: center;
- margin-left: auto;
- margin-bottom: 0rem;
- color: white;
- font-weight: bold;
-}
-.sidebar {
-  margin: 0;
-  padding: 0;
-  width: 200px;
-  background-color: #f1f1f1;
-  position: fixed;
-  height: 100%;
-  overflow: auto;
-}
-
-/* Sidebar links */
-.sidebar a {
-  display: block;
-  color: black;
-  padding: 16px;
-  text-decoration: none;
-}
-
-/* Active/current link */
-.sidebar a.active {
-  background-color: #04AA6D;
-  color: white;
-}
-
-/* Links on mouse-over */
-.sidebar a:hover:not(.active) {
-  background-color: #555;
-  color: white;
-}
-
-/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
-div.content {
-  margin-left: 200px;
-  padding: 1px 16px;
-  height: 1000px;
-}
-
-/* On screens that are less than 700px wide, make the sidebar into a topbar */
-@media screen and (max-width: 700px) {
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: relative;
-  }
-  .sidebar a {float: left;}
-  div.content {margin-left: 0;}
-}
-
-/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
-@media screen and (max-width: 400px) {
-  .sidebar a {
+  .oof{
     text-align: center;
-    float: none;
+  margin-left: auto;
+  margin-bottom: 0rem;
+  color: white;
+  font-weight: bold;
   }
-}
+  .sidebar {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+  }
+  
+  /* Sidebar links */
+  .sidebar a {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+  }
+  
+  /* Active/current link */
+  .sidebar a.active {
+    background-color: #04AA6D;
+    color: white;
+  }
+  
+  /* Links on mouse-over */
+  .sidebar a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  }
+  
+  /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+  div.content {
+    margin-left: 200px;
+    padding: 1px 16px;
+    height: 1000px;
+  }
+  
+  /* On screens that are less than 700px wide, make the sidebar into a topbar */
+  @media screen and (max-width: 700px) {
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+    .sidebar a {float: left;}
+    div.content {margin-left: 0;}
+  }
+  
+  /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+  @media screen and (max-width: 400px) {
+    .sidebar a {
+      text-align: center;
+      float: none;
+    }
+  }
 </style>
