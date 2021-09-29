@@ -1,28 +1,36 @@
 <h3>Title</h3>
-<%= @lecture.title%>
+    <%= @lecture.title%>
 <h3>Subject</h3>
-<%= @lecture.subject%>
+    <%= @lecture.subject%>
 <br/>
+
 <hr/>
+
 <table class = 'table table-hover center table-sm'>
     <tr>
+        <th> Resources </th>
         <th> PDFS </th>
-        <th>Desciption</th>
-        <th>content</th>
+        <th> Desciption </th>
+        <th> content </th>
     </tr>
-
+    <% @count = 1%>
+    
     <% @lecture.lecture_contents.each do |content|%>
     <tr>
+        <td> <strong> Resources#<%= @count %> </strong> </td>
         <td>
             <% if content.pdfs.attached? %>
                 <% content.pdfs.each do |pdf| %>
                     <%= link_to pdf.filename ,rails_blob_path(pdf , disposition ="attachment") %>
                 <% end %>
+            <% else %>
+                <p>No Attachments</p>
             <% end %>
         </td>
         <td> <%= content.desciption %> </td>
         <td> <%= content.content %> </td>
     </tr>
+    <% @count += 1%>
     <% end %>
 </table>
 <%= link_to 'Back', lectures_path %>

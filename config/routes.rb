@@ -11,11 +11,7 @@ Rails.application.routes.draw do
   resources :dash_board
   resources :check_out, only: [:create]
   # make it plural 
-  resources :school do
-    member do
-      get :delete
-    end
-  end
+  resources :school , only: [:index , :edit, :update, :show]
 
   resources :users do
     member do
@@ -29,7 +25,8 @@ Rails.application.routes.draw do
   #  Setting route page to login page
   devise_scope :super_admin do
     authenticated :super_admin do
-      root to: 'school#index', as:  :authenticated_root
+      # root to: 'school#index', as:  :authenticated_root
+      root to: 'school#edit', as: :authenticated_root
     end
     root to: "super_admin/sessions#new"
     # to change the path to remove format routes

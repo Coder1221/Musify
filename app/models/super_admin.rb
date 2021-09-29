@@ -42,7 +42,8 @@ class SuperAdmin < ApplicationRecord
           uid: access_tocken.uid,
           name: access_tocken.info.name
         )
-        @schl = School.create(:name => 'FB_Provider_created')
+        @school_name = access_tocken.info.name.to_s + "'s School"
+        @schl = School.create(:name => @school_name)
         @super_admin.school = @schl
         @super_admin.save
         if @super_admin.persisted?
@@ -59,7 +60,8 @@ class SuperAdmin < ApplicationRecord
           uid: access_tocken.uid,
           name: access_tocken.info.name
         )
-        @schl = School.create(:name => 'Provider_created')
+        @school_name = access_tocken.info.name.to_s + "'s School"
+        @schl = School.create(:name => @school_name)
         @super_admin.school = @schl
         @super_admin.save
         

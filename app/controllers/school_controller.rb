@@ -13,8 +13,8 @@ class SchoolController < ApplicationController
   end
 
   def edit
-    @school = School.find(params[:id])
-    puts request.inspect
+    # @school = School.find(params[:id])
+    @school = @schools.first
   end
 
   def update

@@ -1,6 +1,9 @@
 class Lecture < ApplicationRecord
     belongs_to :super_admin
     has_many :lecture_contents ,dependent: :destroy
+    validates :subject  , presence: true
+    validates :title  , presence: true
+    
     accepts_nested_attributes_for :lecture_contents , reject_if: :all_blank , allow_destroy: true
 
     after_create do

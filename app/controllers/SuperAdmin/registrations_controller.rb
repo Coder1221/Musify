@@ -58,7 +58,7 @@ class SuperAdmin::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-    if current_super_admin.id == params[:id].to_i
+    if current_super_admin.id == params[:super_admin][:id].to_i
       super
     else
       @user = SuperAdmin.find_by_id(params[:super_admin][:id])
