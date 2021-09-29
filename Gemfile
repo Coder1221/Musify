@@ -24,30 +24,30 @@ gem 'jbuilder', '~> 2.7'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
-gem "devise"
-gem "rolify"
-gem "devise_invitable"
 gem "bootstrap_form", "~> 4.0"
+gem "devise"
+gem "devise_invitable"
+gem "rolify"
 # Reduces boot times through caching; required in config/boot.rb
+gem 'activerecord-session_store'
+gem 'aws-sdk-s3'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'cancancan'
-gem 'rufo'
-gem 'rouge'
-gem 'aws-sdk-s3'
+gem 'cocoon'
+gem 'figaro'
+gem 'image_processing'
+gem 'jquery-rails'
+gem "letter_opener", group: :development
 gem 'omniauth'
+gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
-gem 'omniauth-facebook'
-gem 'activerecord-session_store'
-gem 'cocoon'
-gem 'simple_form'
-gem 'jquery-rails'
-gem 'image_processing'
 gem "rails_best_practices"
+gem 'rouge'
+gem 'rufo'
+gem 'simple_form'
 gem "solargraph"
 gem 'stripe'
-gem 'figaro'
-gem "letter_opener", group: :development
 
 
 group :development, :test do
@@ -60,8 +60,8 @@ group :development do
   gem 'web-console', '>= 4.1.0'
   # Display performance information such as SQL time and flame graphs for each request in your browser.
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
-  gem 'rack-mini-profiler', '~> 2.0'
   gem 'listen', '~> 3.3'
+  gem 'rack-mini-profiler', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
