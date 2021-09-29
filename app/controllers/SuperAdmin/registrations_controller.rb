@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class SuperAdmin::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
-  load_and_authorize_resource :SuperAdmin, :parent => false, only: [:edit, :update]
+  load_and_authorize_resource :SuperAdmin, parent: false, only: [:edit, :update]
 
   # GET /resource/sign_up
   # def new
@@ -13,8 +13,8 @@ class SuperAdmin::RegistrationsController < Devise::RegistrationsController
     build_resource(sign_up_params)
     @name = params[:super_admin][:schoolname]
 
-    if @name != ""
-      @schl = School.create(:name => @name)
+    if @name != ''
+      @schl = School.create(name: @name)
       resource.school = @schl
     end
     resource.save
@@ -52,7 +52,7 @@ class SuperAdmin::RegistrationsController < Devise::RegistrationsController
       super
     else
       @user = SuperAdmin.find_by_id(params[:id])
-      render("overlaoded_edit")
+      render('overlaoded_edit')
     end
   end
 
