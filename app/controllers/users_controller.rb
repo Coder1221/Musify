@@ -1,11 +1,9 @@
 class UsersController < ApplicationController
   before_action :authenticate_super_admin!
-  load_and_authorize_resource :SuperAdmin ,:parent => false
+  load_and_authorize_resource :SuperAdmin, parent: false
 
-  def index
+  def index; end
 
-  end
-  
   def activate_or_deactivate
     @user = SuperAdmin.find(params[:id])
     if @user.status_suspended?
@@ -21,8 +19,7 @@ class UsersController < ApplicationController
   def destroy
     @user = SuperAdmin.find(params[:id])
     @user.destroy
-    flash[:notice] = "User deleted"
+    flash[:notice] = 'User deleted'
     redirect_to(users_path)
   end
-
 end
