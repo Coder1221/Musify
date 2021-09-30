@@ -3,7 +3,16 @@
     <%= f.text_field :desciption %>
     <%= f.label "Content" %>
     <%= f.text_field :content %>
+        <br/>
+        <% if f.object.pdfs.present? %>
+            <% f.object.pdfs.each do |pdf| %>
+                <%= link_to pdf.filename ,rails_blob_path(pdf , disposition: "preview") ,target: '_blank' %>
+                <br/>
+            <% end %>
+        <%end%>
+        <br/>
     <%= f.file_field :pdfs , multiple: true %>
     <%= f.hidden_field :_destroy %>
     <%= link_to_remove_association "Remove" , f ,class:'btn btn-primary btn-sm' %>
+    <hr/>
 </div>

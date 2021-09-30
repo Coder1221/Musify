@@ -6,7 +6,7 @@
   <%= form.label "Subject" %>
   <%= form.text_field :subject %>
 
-  <%= form.hidden_field :super_admin_id %>
+  <%= form.hidden_field :super_admin_id , value: current_super_admin.id %>
   <br/> <br/>
 
   <h3>Lecture Content</h3>
