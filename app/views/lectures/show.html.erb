@@ -20,14 +20,17 @@
         <td> <strong> Resources#<%= @count %> </strong> </td>
         <td>
             <% if content.pdfs.attached? %>
-                <% content.pdfs.each do |pdf| %>
-                  <%# if  pdf.prsseviewable? %>
-                    <%# image_tag(pdf , height: 100 , width: 100) %>
-                     <br/>
-                  <%# end %>
-                    <%= link_to pdf.filename ,rails_blob_path(pdf , disposition: "preview") ,target: '_blank' %>
-                    <%= link_to 'Download' ,rails_blob_path(pdf , disposition: "attachment") %>
-                    <br/>
+                <% (0...content.pdfs.count).each do |img| %>
+                    <% if content.pdfs[img].filename.extension == 'pdf' %>
+                        <% pdf = content.pdfs[img] %>
+                        <%= link_to pdf.filename ,rails_blob_path(pdf , disposition: "preview") ,target: '_blank' %>
+                        <%= link_to 'Download' ,rails_blob_path(pdf , disposition: "attachment") %>
+                        <br/>
+                    <%else%>
+                        <%= image_tag(content.pdfs[img] , style: "width: 150px; height: auto;") %>
+                        <%= link_to 'Download' ,rails_blob_path(content.pdfs[img] , disposition: "attachment") %>
+                        <br/>
+                    <% end %>
                 <% end %>
             <% else %>
                 <p> No Attachments </p>
